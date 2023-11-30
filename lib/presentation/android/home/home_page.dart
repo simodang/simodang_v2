@@ -19,16 +19,16 @@ class HomePage extends GetView<HomeController> {
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          GreetingWidget(),
-          const SizedBox(height: 15),
-          StatWidget(),
-          TitleButtonWidget(title: "Kolam"),
-          const PondListWidget(),
-          TitleButtonWidget(title: "Artikel"),
-          ArticleListWidget(),
-        ],
-      ),
+          children: [
+            GreetingWidget(),
+            const SizedBox(height: 15),
+            StatWidget(),
+            TitleButtonWidget(title: "Kolam"),
+            const PondListWidget(),
+            TitleButtonWidget(title: "Artikel"),
+            ArticleListWidget(),
+          ],
+        ),
       )
     );
   }
