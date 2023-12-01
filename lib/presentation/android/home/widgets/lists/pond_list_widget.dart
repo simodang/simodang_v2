@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simodang_v2/presentation/android/home/widgets/lists/pond_list_item_widget.dart';
+import 'package:simodang_v2/presentation/android/shared/widgets/lists/pond_item_widget.dart';
 
 class PondListWidget extends StatelessWidget {
   const PondListWidget({
@@ -13,7 +13,7 @@ class PondListWidget extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: 5,
         itemBuilder: (context, index) => Card(
-          child: PondListItemWidget(
+          child: PondItemWidget(
             title: "Kolam Coba",
             address: "Klojen, Malang"
           ),
