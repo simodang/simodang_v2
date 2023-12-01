@@ -14,7 +14,12 @@ class HomePage extends GetView<HomeController> {
 
     return Scaffold(
       body: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+        margin: const EdgeInsets.fromLTRB(
+          20, // left
+          60, // top
+          20, // right
+          20, // bottom
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

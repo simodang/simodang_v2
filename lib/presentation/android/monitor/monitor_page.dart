@@ -10,7 +10,7 @@ class MonitorPage extends GetView<MonitorController> {
       body: Container(
         margin: const EdgeInsets.fromLTRB(
           20, // left
-          50, // top
+          60, // top
           20, // right
           20, // bottom
         ),
