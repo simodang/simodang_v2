@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:simodang_v2/presentation/android/profile/profile_controller.dart';
 import 'package:simodang_v2/presentation/android/profile/widgets/menu_widget.dart';
 import 'package:simodang_v2/presentation/android/profile/widgets/profile_widget.dart';
-import 'package:simodang_v2/presentation/android/shared/widgets/lists/menu_item_widget.dart';
 import 'package:simodang_v2/presentation/android/shared/widgets/rounded_label_widget.dart';
 import 'package:simodang_v2/presentation/android/shared/widgets/row_label_widget.dart';
 
