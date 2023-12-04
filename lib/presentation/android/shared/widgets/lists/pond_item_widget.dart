@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PondItemWidget extends StatelessWidget {
   PondItemWidget({
@@ -13,7 +14,7 @@ class PondItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => null,
+      onTap: () => Get.toNamed("/detail"),
       child: SizedBox(
         width: 150,
         child: Column(
