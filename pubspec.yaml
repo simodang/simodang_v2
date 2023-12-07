@@ -38,6 +38,7 @@ dependencies:
   get: ^4.6.5
   http: ^1.1.0
   syncfusion_flutter_charts: ^23.2.6
+  syncfusion_flutter_datepicker: ^23.2.6
 
 dev_dependencies:
   flutter_test:

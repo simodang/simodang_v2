@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class IconStatWidget extends StatelessWidget {
-  IconStatWidget({
-    super.key,
+class IconLabelWidget extends StatelessWidget {
+  IconLabelWidget({
     required this.label,
     required this.value,
+    required this.description,
     required this.icon,
     required this.color,
     required this.softColor,
@@ -13,15 +12,14 @@ class IconStatWidget extends StatelessWidget {
 
   final String label;
   final String value;
+  final String description;
   final IconData icon;
   final Color color;
   final Color softColor;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => Get.toNamed("/graph"),
-      child: Row(
+    return Row(
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(10),
@@ -32,7 +30,7 @@ class IconStatWidget extends StatelessWidget {
             child: Icon(
               icon,
               size: 24,
-              color: color
+              color: color,
             ),
           ),
         ),
@@ -58,9 +56,8 @@ class IconStatWidget extends StatelessWidget {
           ],
         ),
         const Spacer(),
-        const Icon(Icons.arrow_forward_ios)
+        Text(description),
       ],
-    ),
     );
   }
 }
