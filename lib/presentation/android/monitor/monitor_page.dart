@@ -27,6 +27,10 @@ class MonitorPage extends GetView<MonitorController> {
             PondGridWidget(),
           ]
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Get.toNamed('/addpond'),
+        child: const Icon(Icons.add),
       )
     );
   }

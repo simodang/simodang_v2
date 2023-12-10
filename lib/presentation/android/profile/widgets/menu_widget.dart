@@ -28,7 +28,6 @@ class MenuWidget extends StatelessWidget {
             text: "Panduan",
             icon: Icons.help,
           ),
-          const SizedBox(height: 10),
           const Divider(),
           TitleWidget(
             title: "Akun",
@@ -38,7 +37,6 @@ class MenuWidget extends StatelessWidget {
             text: "Atur Profil",
             icon: Icons.edit,
           ),
-          const Divider(),
           MenuItemWidget(
             text: "Keluar",
             icon: Icons.logout,
