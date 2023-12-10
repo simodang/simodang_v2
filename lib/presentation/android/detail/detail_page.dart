@@ -10,22 +10,27 @@ class DetailPage extends GetView<DetailController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        // title: const Text("Detail Kolam"),
+        actions: [
+          PopupMenuButton(itemBuilder: (context) => [
+            PopupMenuItem(
+              child: Text("Edit Kolam"),
+              onTap: () => Get.toNamed("/editpond"),
+            ),
+            const PopupMenuItem(
+              child: Text("Atur Perangkat"),
+            ),
+          ]
+          )
+        ]
+      ),
       body: Container(
-        margin: const EdgeInsets.fromLTRB(
-          20, // left
-          40, // top
-          20, // right
-          20, // bottom
-        ),
+        margin: const EdgeInsets.all(20),
         child: SingleChildScrollView(
           child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            IconButton(
-              onPressed: () => Get.back(),
-              icon: const Icon(Icons.arrow_back),
-            ),
-            const SizedBox(height: 10),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
