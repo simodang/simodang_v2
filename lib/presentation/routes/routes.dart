@@ -7,5 +7,6 @@ abstract class Routes {
   static const datepicker = '/datepicker';
   static const addPond = '/addpond';
   static const editPond = '/editpond';
+  static const editDevice = '/editdevice';
   static const qr = '/qr';
 }

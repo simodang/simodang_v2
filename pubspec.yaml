@@ -41,6 +41,7 @@ dependencies:
   syncfusion_flutter_datepicker: ^23.2.6
   qr_code_scanner: ^1.0.1
   image_picker: ^1.0.4
+  flutter_spinbox: ^0.13.1
 
 dev_dependencies:
   flutter_test:

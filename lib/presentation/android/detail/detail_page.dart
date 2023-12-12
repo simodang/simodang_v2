@@ -18,8 +18,9 @@ class DetailPage extends GetView<DetailController> {
               child: Text("Edit Kolam"),
               onTap: () => Get.toNamed("/editpond"),
             ),
-            const PopupMenuItem(
+            PopupMenuItem(
               child: Text("Atur Perangkat"),
+              onTap: () => Get.toNamed("/editdevice"),
             ),
           ]
           )
