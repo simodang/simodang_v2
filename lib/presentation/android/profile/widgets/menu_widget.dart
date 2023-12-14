@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:simodang_v2/presentation/android/profile/widgets/edit_profile_container_widget.dart';
 import 'package:simodang_v2/presentation/android/shared/widgets/texts/list_text_widget.dart';
 
 class MenuWidget extends StatelessWidget {
@@ -25,7 +27,17 @@ class MenuWidget extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.edit),
             title: const Text("Atur Profil"),
-            onTap: () => {},
+            onTap: () {
+              Get.bottomSheet(
+                EditProfileContainerWidget(
+                  addressInitialValue: "Jl. Raya Bogor KM 39, Cijantung, Pasar Rebo, Jakarta Timur",
+                  phoneInitialValue: "081234567890",
+                  setAddressTemp: (value) => {},
+                  setPhoneTemp: (value) => {},
+                  setFinal: () => {},
+                )
+              );
+            },
           ),
           ListTile(
             leading: const Icon(Icons.logout),
