@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simodang_v2/presentation/android/shared/widgets/lists/menu_item_widget.dart';
-import 'package:simodang_v2/presentation/android/shared/widgets/texts/title_widget.dart';
+import 'package:simodang_v2/presentation/android/shared/widgets/texts/list_text_widget.dart';
 
 class MenuWidget extends StatelessWidget {
   @override
@@ -10,36 +9,28 @@ class MenuWidget extends StatelessWidget {
         padding: EdgeInsets.zero,
         shrinkWrap: true,
         children: [
-          TitleWidget(
-            title: "Perangkat",
+          ListTextWidget(text: "Perangkat"),
+          ListTile(
+            leading: const Icon(Icons.shopping_cart),
+            title: const Text("Beli Perangkat"),
+            onTap: () => {},
           ),
-          const SizedBox(height: 10),
-          MenuItemWidget(
-            text: "Beli Perangkat",
-            icon: Icons.shopping_cart,
+          ListTextWidget(text: "Bantuan"),
+          ListTile(
+            leading: const Icon(Icons.help),
+            title: const Text("Panduan"),
+            onTap: () => {},
           ),
-          const Divider(),
-          const SizedBox(height: 10),
-          TitleWidget(
-            title: "Bantuan",
+          ListTextWidget(text: "Akun"),
+          ListTile(
+            leading: const Icon(Icons.edit),
+            title: const Text("Atur Profil"),
+            onTap: () => {},
           ),
-          const SizedBox(height: 10),
-          MenuItemWidget(
-            text: "Panduan",
-            icon: Icons.help,
-          ),
-          const Divider(),
-          TitleWidget(
-            title: "Akun",
-          ),
-          const SizedBox(height: 10),
-          MenuItemWidget(
-            text: "Atur Profil",
-            icon: Icons.edit,
-          ),
-          MenuItemWidget(
-            text: "Keluar",
-            icon: Icons.logout,
+          ListTile(
+            leading: const Icon(Icons.logout),
+            title: const Text("Keluar"),
+            onTap: () => {},
           ),
         ],
       ),

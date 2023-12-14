@@ -31,7 +31,7 @@ class MenuItemWidget extends StatelessWidget {
                   text,
                   style: const TextStyle(
                     fontSize: 15,
-                    fontWeight: FontWeight.bold,
+                    // fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
