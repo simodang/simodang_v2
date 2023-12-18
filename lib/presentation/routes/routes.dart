@@ -10,4 +10,5 @@ abstract class Routes {
   static const editPond = '/editpond';
   static const editDevice = '/editdevice';
   static const qr = '/qr';
+  static const notif = '/notif';
 }

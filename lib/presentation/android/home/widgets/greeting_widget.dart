@@ -20,7 +20,7 @@ class GreetingWidget extends StatelessWidget {
         ),
         const Spacer(),
         ElevatedButton(
-          onPressed: () => Get.toNamed("/login"),
+          onPressed: () => Get.toNamed("/notif"),
           style: ElevatedButton.styleFrom(
             shape: const CircleBorder(),
             backgroundColor: Colors.grey[100]

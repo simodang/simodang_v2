@@ -7,6 +7,7 @@ import 'package:simodang_v2/presentation/android/edit_pond/edit_pond_page.dart';
 import 'package:simodang_v2/presentation/android/graph/graph_page.dart';
 import 'package:simodang_v2/presentation/android/login/login_page.dart';
 import 'package:simodang_v2/presentation/android/main/main_page.dart';
+import 'package:simodang_v2/presentation/android/notification/notification_page.dart';
 import 'package:simodang_v2/presentation/android/qr_scan/qr_scan_page.dart';
 part './routes.dart';
 
@@ -21,5 +22,6 @@ class Pages {
     GetPage(name: Routes.editPond, page: () => EditPondPage()),
     GetPage(name: Routes.editDevice, page: () => EditDevicePage()),
     GetPage(name: Routes.qr, page: () => QrScanPage()),
+    GetPage(name: Routes.notif, page: () => NotificationPage()),
   ];
 }
