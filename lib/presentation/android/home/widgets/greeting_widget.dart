@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class GreetingWidget extends StatelessWidget {
   @override
@@ -19,7 +20,7 @@ class GreetingWidget extends StatelessWidget {
         ),
         const Spacer(),
         ElevatedButton(
-          onPressed: () => null,
+          onPressed: () => Get.toNamed("/login"),
           style: ElevatedButton.styleFrom(
             shape: const CircleBorder(),
             backgroundColor: Colors.grey[100]

@@ -5,6 +5,7 @@ import 'package:simodang_v2/presentation/android/detail/detail_page.dart';
 import 'package:simodang_v2/presentation/android/edit_device/edit_device_page.dart';
 import 'package:simodang_v2/presentation/android/edit_pond/edit_pond_page.dart';
 import 'package:simodang_v2/presentation/android/graph/graph_page.dart';
+import 'package:simodang_v2/presentation/android/login/login_page.dart';
 import 'package:simodang_v2/presentation/android/main/main_page.dart';
 import 'package:simodang_v2/presentation/android/qr_scan/qr_scan_page.dart';
 part './routes.dart';
@@ -12,6 +13,7 @@ part './routes.dart';
 class Pages {
   static final pages = [
     GetPage(name: Routes.initial, page: () => MainPage()),
+    GetPage(name: Routes.login, page: () => LoginPage()),
     GetPage(name: Routes.detail, page: () => DetailPage()),
     GetPage(name: Routes.graph, page: () => GraphPage()),
     GetPage(name: Routes.datepicker, page: () => DatePickerPage()),
