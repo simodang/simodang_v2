@@ -6,6 +6,7 @@ import 'package:simodang_v2/presentation/android/home/widgets/lists/article_list
 import 'package:simodang_v2/presentation/android/home/widgets/lists/pond_list_widget.dart';
 import 'package:simodang_v2/presentation/android/home/widgets/stat_widget.dart';
 import 'package:simodang_v2/presentation/android/home/widgets/title_button_widget.dart';
+import 'package:simodang_v2/presentation/android/shared/widgets/lists/pond_item_widget.dart';
 
 class HomePage extends GetView<HomeController> {
   @override
@@ -25,9 +26,25 @@ class HomePage extends GetView<HomeController> {
           children: [
             GreetingWidget(),
             const SizedBox(height: 15),
-            StatWidget(),
+            Obx(() => StatWidget(
+              pondCount: controller.ponds.length,
+            )),
             TitleButtonWidget(title: "Kolam"),
-            const PondListWidget(),
+            SizedBox(
+              height: 200,
+              child: Obx(() => ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: controller.ponds.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: PondItemWidget(
+                      title: controller.ponds[index].name,
+                      address: controller.ponds[index].city,
+                    ),
+                  );
+                }
+              ))
+            ),
             TitleButtonWidget(title: "Artikel"),
             Flexible(
               child: Obx(() => ListView.separated(

@@ -1,3 +1,4 @@
 class APIEndpoint {
   static String api = "https://www.example.com/";
+  static String token = "secret";
 }
