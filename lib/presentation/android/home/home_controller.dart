@@ -13,6 +13,8 @@ class HomeController extends GetxController {
   RxInt seedCount = 0.obs;
   RxInt warningCount = 0.obs;
 
+  RxString greeting = "".obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -21,6 +23,8 @@ class HomeController extends GetxController {
       setSeedCount();
       setWarningCount();
     });
+
+    setGreetingByTime(DateTime.now().hour);
   }
 
   void getArticles() async {
@@ -43,5 +47,17 @@ class HomeController extends GetxController {
     final List<Pond> ponds = this.ponds.toList();
     final warningCount = ponds.where((pond) => pond.status == false).length;
     this.warningCount.value = warningCount;
+  }
+
+  void setGreetingByTime(int hour) {
+    if (hour >= 0 && hour < 12) {
+      greeting.value = "Good Morning👋";
+    } else if (hour >= 12 && hour < 15) {
+      greeting.value = "Good Afternoon👋";
+    } else if (hour >= 15 && hour < 18) {
+      greeting.value = "Good Evening👋";
+    } else {
+      greeting.value = "Good Night👋";
+    }
   }
 }

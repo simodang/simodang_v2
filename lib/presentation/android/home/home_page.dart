@@ -30,7 +30,9 @@ class HomePage extends GetView<HomeController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            GreetingWidget(),
+            Obx(() => GreetingWidget(
+              greeting: controller.greeting.value,
+            )),
             const SizedBox(height: 15),
             Obx(() => StatWidget(
               pondCount: controller.ponds.length,
