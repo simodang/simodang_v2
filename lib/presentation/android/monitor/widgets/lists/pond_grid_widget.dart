@@ -15,7 +15,8 @@ class PondGridWidget extends StatelessWidget {
         itemBuilder:(context, index) => Card(
           child: PondItemWidget(
             title: "Kolam Coba",
-            address: "Klojen, Malang"
+            address: "Klojen, Malang",
+            imageUrl: "https://picsum.photos/200/300",
           )
         ),
       )

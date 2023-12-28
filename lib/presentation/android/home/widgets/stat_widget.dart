@@ -5,18 +5,22 @@ class StatWidget extends StatelessWidget {
   const StatWidget({
     super.key,
     required this.pondCount,
+    required this.seedCount,
+    required this.warningCount,
   });
 
   final int pondCount;
+  final int seedCount;
+  final int warningCount;
 
   @override
   Widget build(BuildContext context) {
     return Row(children: [
       StatBoxWidget(title: "Kolam", value: pondCount),
-      SizedBox(width: 15),
-      StatBoxWidget(title: "Bibit", value: 500),
-      SizedBox(width: 15),
-      StatBoxWidget(title: "Peringatan", value: 3),
+      const SizedBox(width: 15),
+      StatBoxWidget(title: "Bibit", value: seedCount),
+      const SizedBox(width: 15),
+      StatBoxWidget(title: "Peringatan", value: warningCount),
     ]);
   }
 }

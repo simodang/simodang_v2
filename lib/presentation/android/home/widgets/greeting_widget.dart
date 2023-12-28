@@ -22,7 +22,6 @@ class GreetingWidget extends StatelessWidget {
         ElevatedButton(
           onPressed: () => Get.toNamed("/notif"),
           style: ElevatedButton.styleFrom(
-            shape: const CircleBorder(),
             backgroundColor: Colors.grey[100]
           ),
           child: const Icon(Icons.notifications, color: Colors.black),

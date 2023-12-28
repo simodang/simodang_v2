@@ -4,9 +4,11 @@ class TitleButtonWidget extends StatelessWidget {
   TitleButtonWidget({
     super.key, 
     required this.title,
+    required this.onPressed
   });
 
   final String title;
+  final Function onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,9 @@ class TitleButtonWidget extends StatelessWidget {
         ),
         const Spacer(),
         TextButton(
-          onPressed: () => null,
+          onPressed: () {
+            onPressed();
+          },
           child: const Text(
             "Lihat Semua",
             style: TextStyle(
