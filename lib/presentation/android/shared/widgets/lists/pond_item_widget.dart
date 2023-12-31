@@ -22,7 +22,7 @@ class PondItemWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(imageUrl, fit: BoxFit.fitWidth, width: 150, height: 100),
+            Image.network(imageUrl, fit: BoxFit.fitWidth, width: 200, height: 100),
             const SizedBox(height: 14),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 10),
