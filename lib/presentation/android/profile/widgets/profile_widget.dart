@@ -5,13 +5,11 @@ class ProfileWidget extends StatelessWidget {
     super.key,
     required this.name,
     required this.email,
-    required this.phoneNum,
     required this.image,
   });
 
   final String name;
   final String email;
-  final String phoneNum;
   final String image;
 
   @override

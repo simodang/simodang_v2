@@ -23,12 +23,11 @@ class ProfilePage extends GetView<ProfileController> {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                ProfileWidget(
-                  name: "Kaedehara Yoshinori Kaedehara Kazuha",
-                  email: "johndoe@email.com",
-                  phoneNum: "081234567890",
-                  image: "https://picsum.photos/200/300"
-                ),
+                Obx(() => ProfileWidget(
+                  name: controller.name.value,
+                  email: controller.email.value,
+                  image: controller.photo.value,
+                )),
                 const SizedBox(height: 20),
                 Obx(() => RowLabelWidget(
                   label: "Alamat",
