@@ -29,21 +29,22 @@ class MonitorPage extends GetView<MonitorController> {
             ),
             // PondGridWidget(),
             Flexible(
-              child: GridView.builder(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              itemCount: controller.ponds.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisExtent: 200,
-              ),
-              itemBuilder:(context, index) => Card(
-                child: PondItemWidget(
-                  title: controller.ponds[index].name,
-                  address: controller.ponds[index].city,
-                  imageUrl: controller.ponds[index].imageUrl,
-                )
-              ),
-            ),
+              child: Obx(() => GridView.builder(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                itemCount: controller.ponds.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisExtent: 200,
+                ),
+                itemBuilder:(context, index) => Card(
+                  child: PondItemWidget(
+                    title: controller.ponds[index].name,
+                    address: controller.ponds[index].city,
+                    imageUrl: controller.ponds[index].imageUrl,
+                    onTap: () => Get.toNamed('/detail?id=${controller.ponds[index].id}'),
+                  )
+                ),
+              )),
             )
           ]
         ),

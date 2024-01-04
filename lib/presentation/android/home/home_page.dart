@@ -56,6 +56,7 @@ class HomePage extends GetView<HomeController> {
                       title: controller.ponds[index].name,
                       address: controller.ponds[index].city,
                       imageUrl: controller.ponds[index].imageUrl,
+                      onTap: () => Get.toNamed('/detail?id=${controller.ponds[index].id}'),
                     ),
                   );
                 }

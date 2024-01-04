@@ -7,8 +7,12 @@ import 'package:simodang_v2/presentation/android/detail/widgets/lists/stat_colum
 import 'package:simodang_v2/presentation/android/shared/widgets/texts/title_widget.dart';
 
 class DetailPage extends GetView<DetailController> {
+  final String pondId = Get.parameters['id']!;
+
   @override
   Widget build(BuildContext context) {
+    Get.put(DetailController(id: pondId));
+
     return Scaffold(
       appBar: AppBar(
         // title: const Text("Detail Kolam"),
@@ -34,15 +38,17 @@ class DetailPage extends GetView<DetailController> {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                "https://placehold.co/600x400/png",
+              child: Obx(() => Image.network(
+                controller.imageUrl.value,
                 fit: BoxFit.cover,
-              ),
+                width: double.infinity,
+                height: 200,
+              )),
             ),
             const SizedBox(height: 20),
-            TitleWidget(title: "Kolam Ikan Dugong Yang Diberkati Oleh Kuasa Tuhan Yang Maha Esa"),
+            Obx(() => TitleWidget(title: controller.name.value)),
             const SizedBox(height: 10),
-            const Text("Jl. Raya Dugong No. 1, Dugong, Kec. Dugong, Kab. Dugong, Prov. Dugong"),
+            Obx(() => Text(controller.address.value)),
             const SizedBox(height: 10),
             const Text(
               "Kondisi Kolam",
@@ -51,7 +57,10 @@ class DetailPage extends GetView<DetailController> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            PillColumnWidget(),
+            Obx(() => PillColumnWidget(
+              isFilled: controller.isFilled.value,
+              status: controller.status.value,
+            )),
             const SizedBox(height: 15),
             const Text(
               "Informasi Kolam",
@@ -61,7 +70,10 @@ class DetailPage extends GetView<DetailController> {
               ),
             ),
             const SizedBox(height: 10),
-            LabelColumnWidget(),
+            Obx(() => LabelColumnWidget(
+              seedDate: controller.seedDate.value,
+              seedCount: controller.seedCount.value,
+            )),
             const SizedBox(height: 15),
             const Text(
               "Grafik Metrik Terbaru",

@@ -10,4 +10,11 @@ class PondService {
     
     return ponds.map((e) => Pond.fromJson(e)).toList();
   }
+
+  Future<Pond> getPond(String id) async {
+    final response = await PondAPI().getPond(id);
+    final Map<String, dynamic> pond = jsonDecode(response.body);
+
+    return Pond.fromJson(pond);
+  }
 }

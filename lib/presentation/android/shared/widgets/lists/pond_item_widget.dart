@@ -7,16 +7,18 @@ class PondItemWidget extends StatelessWidget {
     required this.title,
     required this.address,
     required this.imageUrl,
+    required this.onTap,
   });
 
   final String title;
   final String address;
   final String imageUrl;
+  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.toNamed("/detail"),
+      onTap: () => onTap(),
       child: SizedBox(
         width: 150,
         child: Column(

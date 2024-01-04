@@ -4,22 +4,7 @@ import 'package:simodang_v2/presentation/android/shared/widgets/lists/pond_item_
 class PondGridWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: GridView.builder(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        itemCount: 10,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          mainAxisExtent: 200,
-        ),
-        itemBuilder:(context, index) => Card(
-          child: PondItemWidget(
-            title: "Kolam Coba",
-            address: "Klojen, Malang",
-            imageUrl: "https://picsum.photos/200/300",
-          )
-        ),
-      )
-    );
+    // TODO: implement build
+    throw UnimplementedError();
   }
 }

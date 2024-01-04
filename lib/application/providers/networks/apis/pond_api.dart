@@ -12,4 +12,14 @@ class PondAPI {
 
     return response;
   }
+
+  Future<http.Response> getPond(String id) async {
+    final response = await http.get(Uri.parse('${APIEndpoint.api}/ponds/$id'),
+      headers: {'Authorization': 'Bearer ${APIEndpoint.token}'}
+    );
+
+    if (response.statusCode != 200) throw Exception('Failed to load pond');
+
+    return response;
+  }
 }
