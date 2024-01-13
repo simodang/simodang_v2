@@ -83,7 +83,9 @@ class DetailPage extends GetView<DetailController> {
               ),
             ),
             const SizedBox(height: 15),
-            StatColumnWidget(),
+            StatColumnWidget(
+              pondId: pondId,
+            ),
           ],
         ),
         )

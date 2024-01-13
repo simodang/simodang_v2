@@ -9,6 +9,7 @@ class IconStatWidget extends StatelessWidget {
     required this.icon,
     required this.color,
     required this.softColor,
+    required this.onTap,
   });
 
   final String label;
@@ -16,11 +17,12 @@ class IconStatWidget extends StatelessWidget {
   final IconData icon;
   final Color color;
   final Color softColor;
+  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.toNamed("/graph"),
+      onTap: () => onTap(),
       child: Row(
       children: [
         ClipRRect(

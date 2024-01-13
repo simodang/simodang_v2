@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:simodang_v2/application/data/models/metric.dart';
 import 'package:simodang_v2/presentation/android/graph/graph_controller.dart';
 import 'package:simodang_v2/presentation/android/graph/widgets/current_value_widget.dart';
 import 'package:simodang_v2/presentation/android/graph/widgets/lists/value_list_widget.dart';
+import 'package:simodang_v2/presentation/android/graph/widgets/metric_chart_widget.dart';
 import 'package:simodang_v2/presentation/android/graph/widgets/time_chip_widget.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 class GraphPage extends GetView<GraphController> {
+  final String pondId = Get.parameters['id']!;
+  final String property = Get.parameters['property'] ?? 'temperature';
+
   @override
   Widget build(BuildContext context) {
     Get.put(GraphController());
@@ -31,56 +35,78 @@ class GraphPage extends GetView<GraphController> {
                       icon: const Icon(Icons.arrow_back),
                     ),
                     const SizedBox(width: 10),
-                    const Text(
-                      "pH",
-                      style: TextStyle(
+                    Text(
+                      Metric.empty().getCasedProperty(property),
+                      style: const TextStyle(
                         fontSize: 20,
                       ),
                     ),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
                 IconButton(
                   icon: const Icon(Icons.calendar_month),
                   onPressed: () => Get.toNamed('/datepicker')),
               ],
             ),
             const SizedBox(height: 10),
-            CurrentValueWidget(),
-            SizedBox(height: 15),
-            SfCartesianChart(
-              primaryXAxis: CategoryAxis(),
-              // Enable tooltip
-              tooltipBehavior: TooltipBehavior(enable: true),
-              series: <ChartSeries<SalesData, String>>[
-                LineSeries<SalesData, String>(
-                    dataSource: <SalesData>[
-                      SalesData('Jan', 35),
-                      SalesData('Feb', 28),
-                      SalesData('Mar', 34),
-                      SalesData('Apr', 80),
-                      SalesData('May', 40)
-                    ],
-                    xValueMapper: (SalesData sales, _) => sales.year,
-                    yValueMapper: (SalesData sales, _) => sales.sales,
-                    // Enable data label
-                    dataLabelSettings: DataLabelSettings(isVisible: true)
-                  )
-              ],
-            ),
-            // GraphSegmentedWidget(),
+            Obx(() => FutureBuilder(
+              future: controller.getMetrics(controller.currentIndex.value),
+              builder: (context, AsyncSnapshot<List<Metric>> snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return CurrentValueWidget(
+                    lastMetric: snapshot.data!.last,
+                    property: property,
+                    startDate: DateTime.now(),
+                  );
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
+            )),
+            Obx(() => FutureBuilder(
+              future: controller.getMetrics(controller.currentIndex.value),
+              builder: (context, AsyncSnapshot<List<Metric>> snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return MetricChartWidget(
+                    metrics: snapshot.data!,
+                    metricType: property,
+                  );
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
+            )),
             Row(
               children: [
-                Spacer(),
+                const Spacer(),
                 Obx(() => TimeChip(
                   timeList: controller.timeList,
                   currentIndex: controller.currentIndex.value,
                   onSelected: controller.changeIndex,)),
-                Spacer()
+                const Spacer()
               ],
             ),
-            SizedBox(height: 15),
-            ValueListWidget()
+            const SizedBox(height: 15),
+            Obx(() => FutureBuilder(
+              future: controller.getMetrics(controller.currentIndex.value),
+              builder: (context, AsyncSnapshot<List<Metric>> snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return ValueListWidget(
+                    metrics: snapshot.data!,
+                    property: property,
+                  );
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
+            ))
           ],
       ),
       )
