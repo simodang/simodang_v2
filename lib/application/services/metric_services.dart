@@ -12,4 +12,13 @@ class MetricService {
 
     return metrics.map((e) => Metric.fromJson(e)).toList();
   }
+
+  Future<List<Metric>> getAverageMetrics(String pondId, String startDate, String endDate) async {
+    final response = await MetricAPI().getAverageMetrics(pondId, startDate, endDate);
+    final List<dynamic> metrics = jsonDecode(response.body);
+
+    print("service called");
+
+    return metrics.map((e) => Metric.fromJson(e)).toList();
+  }
 }

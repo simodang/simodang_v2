@@ -17,4 +17,22 @@ class MetricAPI {
 
     return response;
   }
+
+  Future<http.Response> getAverageMetrics(
+    String pondId,
+    String startDate,
+    String endDate,
+  ) async {
+    final response = await http.get(Uri.parse(
+      '${APIEndpoint.api}/metrics/avg/$pondId?startDate=$startDate&endDate=$endDate'
+    ),
+      headers: {'Authorization': 'Bearer ${APIEndpoint.token}'}
+    );
+
+    print("api called");
+
+    if (response.statusCode != 200) throw Exception('Failed to load metrics');
+
+    return response;
+  }
 }

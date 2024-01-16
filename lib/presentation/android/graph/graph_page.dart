@@ -46,16 +46,31 @@ class GraphPage extends GetView<GraphController> {
                 const Spacer(),
                 IconButton(
                   icon: const Icon(Icons.calendar_month),
-                  onPressed: () => Get.toNamed('/datepicker')),
+                  onPressed: () => controller.pickDate(),
+                ),
               ],
             ),
             const SizedBox(height: 10),
             Obx(() => FutureBuilder(
-              future: controller.getMetrics(controller.currentIndex.value),
+              future: controller.getMetrics(
+                controller.isAveraged.value,
+                controller.currentIndex.value,
+                controller.startDate.value,
+                controller.endDate.value,
+              ),
               builder: (context, AsyncSnapshot<List<Metric>> snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   return CurrentValueWidget(
-                    lastMetric: snapshot.data!.last,
+                    lastMetric: () {
+                      if (!snapshot.hasData) {
+                        return Metric.empty();
+                      }
+                      if (snapshot.data!.isEmpty) {
+                        return Metric.empty();
+                      } else {
+                        return snapshot.data!.last;
+                      }
+                    }(),
                     property: property,
                     startDate: DateTime.now(),
                   );
@@ -67,10 +82,21 @@ class GraphPage extends GetView<GraphController> {
               },
             )),
             Obx(() => FutureBuilder(
-              future: controller.getMetrics(controller.currentIndex.value),
+              future: controller.getMetrics(
+                controller.isAveraged.value,
+                controller.currentIndex.value,
+                controller.startDate.value,
+                controller.endDate.value,
+              ),
               builder: (context, AsyncSnapshot<List<Metric>> snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
+                  if (!snapshot.hasData) {
+                    return const Center(
+                      child: Text('No data'),
+                    );
+                  }
                   return MetricChartWidget(
+                    isAveraged: controller.isAveraged.value,
                     metrics: snapshot.data!,
                     metricType: property,
                   );
@@ -93,10 +119,21 @@ class GraphPage extends GetView<GraphController> {
             ),
             const SizedBox(height: 15),
             Obx(() => FutureBuilder(
-              future: controller.getMetrics(controller.currentIndex.value),
+              future: controller.getMetrics(
+                controller.isAveraged.value,
+                controller.currentIndex.value,
+                controller.startDate.value,
+                controller.endDate.value,
+              ),
               builder: (context, AsyncSnapshot<List<Metric>> snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
+                  if (!snapshot.hasData) {
+                    return const Center(
+                      child: Text('No data'),
+                    );
+                  }
                   return ValueListWidget(
+                    isAveraged: controller.isAveraged.value,
                     metrics: snapshot.data!,
                     property: property,
                   );

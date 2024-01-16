@@ -21,7 +21,7 @@ class Metric {
 
   factory Metric.fromJson(Map<String, dynamic> json) {
     return Metric(
-      id: json['id'],
+      id: json['id'] ?? '',
       temperature: double.parse(json['temperature']),
       ph: double.parse(json['ph']),
       tdo: double.parse(json['tdo']),
@@ -104,5 +104,11 @@ class Metric {
     final DateTime date = DateTime.parse(createdAt);
 
     return formatDate(date, [dd, ' ', MM, ' ', yyyy, ' ', HH, ':', nn, ':', ss]);
+  }
+
+  String getDate() {
+    final DateTime date = DateTime.parse(createdAt);
+
+    return formatDate(date, [dd, ' ', MM, ' ', yyyy]);
   }
 }

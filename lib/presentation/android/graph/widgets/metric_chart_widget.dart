@@ -7,10 +7,12 @@ class MetricChartWidget extends StatelessWidget {
     super.key,
     required this.metrics,
     required this.metricType,
+    required this.isAveraged,
   });
 
   final List<Metric> metrics;
   final String metricType;
+  final bool isAveraged;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +30,9 @@ class MetricChartWidget extends StatelessWidget {
         LineSeries<Metric, String>(
           dataSource: metrics,
           xValueMapper: (Metric metric, _) {
+            if (isAveraged) {
+              return metric.getDate();
+            }
             return metric.getTime();
           },
           yValueMapper: (Metric metric, _) {

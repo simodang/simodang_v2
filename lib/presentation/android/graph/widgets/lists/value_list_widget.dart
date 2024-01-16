@@ -7,10 +7,12 @@ class ValueListWidget extends StatelessWidget {
     super.key,
     required this.metrics,
     required this.property,
+    required this.isAveraged,
   });
 
   final List<Metric> metrics;
   final String property;
+  final bool isAveraged;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,9 @@ class ValueListWidget extends StatelessWidget {
         separatorBuilder:(context, index) => const Divider(),
         itemBuilder: (context, index) {
           return ReversedLabelWidget(
-            label: metrics[index].getFullTime(),
+            label: isAveraged
+              ? metrics[index].getDate()
+              : metrics[index].getTime(),
             value: metrics[index].getMetric(property).toString(),
           );
         },
