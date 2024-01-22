@@ -4,6 +4,7 @@ import 'package:simodang_v2/presentation/android/date_picker/date_picker_page.da
 import 'package:simodang_v2/presentation/android/detail/detail_page.dart';
 import 'package:simodang_v2/presentation/android/edit_device/edit_device_page.dart';
 import 'package:simodang_v2/presentation/android/edit_pond/edit_pond_page.dart';
+import 'package:simodang_v2/presentation/android/edit_threshold/edit_threshold_page.dart';
 import 'package:simodang_v2/presentation/android/graph/graph_page.dart';
 import 'package:simodang_v2/presentation/android/login/login_page.dart';
 import 'package:simodang_v2/presentation/android/main/main_page.dart';
@@ -21,6 +22,7 @@ class Pages {
     GetPage(name: Routes.addPond, page: () => AddPondPage()),
     GetPage(name: Routes.editPond, page: () => EditPondPage()),
     GetPage(name: Routes.editDevice, page: () => EditDevicePage()),
+    GetPage(name: Routes.editThreshold, page: () => EditThresholdPage()),
     GetPage(name: Routes.qr, page: () => QrScanPage()),
     GetPage(name: Routes.notif, page: () => NotificationPage()),
   ];

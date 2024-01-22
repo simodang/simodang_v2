@@ -17,6 +17,7 @@ class DetailController extends GetxController {
   RxBool status = false.obs;
   RxString seedDate = "2010-05-01T00:00:00.000Z".obs;
   RxInt seedCount = 0.obs;
+  RxString deviceId = "".obs;
 
   @override
   void onInit() {
@@ -33,5 +34,6 @@ class DetailController extends GetxController {
     status.value = pond.status;
     seedDate.value = pond.seedDate;
     seedCount.value = pond.seedCount;
+    deviceId.value = pond.deviceId;
   }
 }

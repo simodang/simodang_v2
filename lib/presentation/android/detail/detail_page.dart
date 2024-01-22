@@ -24,7 +24,11 @@ class DetailPage extends GetView<DetailController> {
             ),
             PopupMenuItem(
               child: Text("Atur Perangkat"),
-              onTap: () => Get.toNamed("/editdevice"),
+              enabled: controller.deviceId.value != "",
+              onTap: () => Get.toNamed("/editdevice", arguments: {
+                'pondId': pondId,
+                'deviceId': controller.deviceId.value,
+              }),
             ),
           ]
           )

@@ -1,24 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:simodang_v2/presentation/android/edit_device/edit_device.controller.dart';
-import 'package:simodang_v2/presentation/android/edit_device/widgets/threshold_spinbox_widget.dart';
 import 'package:simodang_v2/presentation/android/shared/widgets/texts/list_text_widget.dart';
 
 class EditDevicePage extends GetView<EditDeviceController> {
-
-  onPressed(int min, int max, Function setFinal) {
-    if (controller.isMinLessThanMax(min, max)) {
-      setFinal();
-      Get.key.currentState?.pop();
-      return;
-    }
-    Get.snackbar(
-        "Error",
-        "Batas bawah tidak boleh lebih besar dari batas atas",
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-    );
-  }
+  final String pondId = Get.arguments['pondId'];
+  final String deviceId = Get.arguments['deviceId'];
 
   @override
   Widget build(BuildContext context) {
@@ -52,134 +39,94 @@ class EditDevicePage extends GetView<EditDeviceController> {
           )),
           ListTextWidget(text: "Ambang Batas"),
           ListTile(
-            onTap:() => {
-              Get.bottomSheet(
-                Container(
-                  color: Colors.white,
-                  padding: const EdgeInsets.all(20),
-                  child: ThresholdSpinboxWidget(
-                    currentMin: controller.tempMin.value,
-                    currentMax: controller.tempMax.value,
-                    onChangedMin: controller.setTempMin,
-                    onChangedMax: controller.setTempMax,
-                    onPressed: () => onPressed(
-                      controller.tempMinTemp.value,
-                      controller.tempMaxTemp.value,
-                      () => controller.setFinalTemp(),
-                    ),
-                    parameter: "Suhu",
-                    max: 100,
-                  ),
-                ),
-              )
+            onTap: () {
+              Get.toNamed("/editthreshold", arguments: {
+                'param': "Suhu",
+                'low': controller.tempLow.value,
+                'high': controller.tempHigh.value,
+                'max': 100,
+              })?.then((value) {
+                if (value != null) {
+                  controller.setTempLow(value['low']);
+                  controller.setTempHigh(value['high']);
+                }
+              });
             },
             title: const Text("Suhu"),
-            subtitle: Obx(() => Text("Min ${controller.tempMin} | Max ${controller.tempMax}")),
+            subtitle: Obx(() => Text("Min ${controller.tempLow} | Max ${controller.tempHigh}")),
           ),
           ListTile(
-            onTap:() => {
-              Get.bottomSheet(
-                Container(
-                  color: Colors.white,
-                  padding: const EdgeInsets.all(20),
-                  child: ThresholdSpinboxWidget(
-                    currentMin: controller.phMin.value,
-                    currentMax: controller.phMax.value,
-                    onChangedMin: controller.setPhMin,
-                    onChangedMax: controller.setPhMax,
-                    onPressed: () => onPressed(
-                      controller.phMinTemp.value,
-                      controller.phMaxTemp.value,
-                      () => controller.setFinalPh(),
-                    ),
-                    parameter: "pH",
-                    max: 14,
-                  ),
-                ),
-              )
+            onTap: () {
+              Get.toNamed("/editthreshold", arguments: {
+                'param': "pH",
+                'low': controller.phLow.value,
+                'high': controller.phHigh.value,
+                'max': 100,
+              })?.then((value) {
+                if (value != null) {
+                  controller.setPhLow(value['low']);
+                  controller.setPhHigh(value['high']);
+                }
+              });
             },
             title: const Text("pH"),
-            subtitle: Obx(() => Text("Min ${controller.phMin} | Max ${controller.phMax}")),
+            subtitle: Obx(() => Text("Min ${controller.phLow} | Max ${controller.phHigh}")),
           ),
           ListTile(
-            onTap:() => {
-              Get.bottomSheet(
-                Container(
-                  color: Colors.white,
-                  padding: const EdgeInsets.all(20),
-                  child: ThresholdSpinboxWidget(
-                    currentMin: controller.tdoMin.value,
-                    currentMax: controller.tdoMax.value,
-                    onChangedMin: controller.setTdoMin,
-                    onChangedMax: controller.setTdoMax,
-                    onPressed: () => onPressed(
-                      controller.tdoMinTemp.value,
-                      controller.tdoMaxTemp.value,
-                      () => controller.setFinalTdo(),
-                    ),
-                    parameter: "TDO",
-                    max: 10000,
-                  ),
-                ),
-              )
+            onTap: () {
+              Get.toNamed("/editthreshold", arguments: {
+                'param': "TDO",
+                'low': controller.tdoLow.value,
+                'high': controller.tdoHigh.value,
+                'max': 100,
+              })?.then((value) {
+                if (value != null) {
+                  controller.setTdoLow(value['low']);
+                  controller.setTdsHigh(value['high']);
+                }
+              });
             },
             title: const Text("TDO"),
-            subtitle: Obx(() => Text("Min ${controller.tdoMin} | Max ${controller.tdoMax}")),
+            subtitle: Obx(() => Text("Min ${controller.tdoLow} | Max ${controller.tdsHigh}")),
           ),
           ListTile(
-            onTap:() => {
-              Get.bottomSheet(
-                Container(
-                  color: Colors.white,
-                  padding: const EdgeInsets.all(20),
-                  child: ThresholdSpinboxWidget(
-                    currentMin: controller.tdsMin.value,
-                    currentMax: controller.tdsMax.value,
-                    onChangedMin: controller.setTdsMin,
-                    onChangedMax: controller.setTdsMax,
-                    onPressed: () => onPressed(
-                      controller.tdsMinTemp.value,
-                      controller.tdsMaxTemp.value,
-                      () => controller.setFinalTds(),
-                    ),
-                    parameter: "TDS",
-                    max: 10000,
-                  ),
-                ),
-              )
+            onTap: () {
+              Get.toNamed("/editthreshold", arguments: {
+                'param': "TDS",
+                'low': controller.tdoLow.value,
+                'high': controller.tdoHigh.value,
+                'max': 100,
+              })?.then((value) {
+                if (value != null) {
+                  controller.setTdsLow(value['low']);
+                  controller.setTdsHigh(value['high']);
+                }
+              });
             },
             title: const Text("TDS"),
-            subtitle: Obx(() => Text("Min ${controller.tdsMin} | Max ${controller.tdsMax}")),
+            subtitle: Obx(() => Text("Min ${controller.tdsLow} | Max ${controller.tdsHigh}")),
           ),
           ListTile(
-            onTap:() => {
-              Get.bottomSheet(
-                Container(
-                  color: Colors.white,
-                  padding: const EdgeInsets.all(20),
-                  child: ThresholdSpinboxWidget(
-                    currentMin: controller.turbidityMin.value,
-                    currentMax: controller.turbidityMax.value,
-                    onChangedMin: controller.setTurbiditasMin,
-                    onChangedMax: controller.setTurbiditasMax,
-                    onPressed: () => onPressed(
-                      controller.turbidityMinTemp.value,
-                      controller.turbidityMaxTemp.value,
-                      () => controller.setFinalTurbidity(),
-                    ),
-                    parameter: "TDS",
-                    max: 10000,
-                  ),
-                ),
-              ),
+            onTap: () {
+              Get.toNamed("/editthreshold", arguments: {
+                'param': "Turbiditas",
+                'low': controller.turbiditiesLow.value,
+                'high': controller.turbiditiesHigh.value,
+                'max': 100,
+              })?.then((value) {
+                if (value != null) {
+                  controller.setTurbiditiesLow(value['low']);
+                  controller.setTurbiditiesHigh(value['high']);
+                }
+              });
             },
             title: const Text("Turbiditas"),
-            subtitle: Obx(() => Text("Min ${controller.turbidityMin} | Max ${controller.turbidityMax}")),
+            subtitle: Obx(() => Text("Min ${controller.turbiditiesLow} | Max ${controller.turbiditiesHigh}")),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.back(),
+        onPressed: () => controller.updateDevice(pondId),
         child: const Icon(Icons.save),
       )
     );
