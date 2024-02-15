@@ -16,6 +16,18 @@ class DeviceAPI {
     return response;
   }
 
+  Future<http.Response> getDevices() async {
+    final response = await http.get(Uri.parse(
+      '${APIEndpoint.api}/devices',
+    ),
+      headers: {'Authorization': 'Bearer ${APIEndpoint.token}'}
+    );
+
+    if (response.statusCode != 200) throw Exception('Failed to load devices');
+
+    return response;
+  }
+
   Future<http.Response> updateDeviceByPond(String pondId, String body) async {
     final response = await http.patch(Uri.parse(
       '${APIEndpoint.api}/ponds/$pondId/device',

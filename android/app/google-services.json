@@ -1,0 +1,113 @@
+{
+  "project_info": {
+    "project_number": "246908376288",
+    "project_id": "simodang-d6403",
+    "storage_bucket": "simodang-d6403.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:246908376288:android:832e2a2b983307996dec85",
+        "android_client_info": {
+          "package_name": "com.example.simodang_v2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "246908376288-ga4d7dfghcil72d0a0b3kgc2rtik3u64.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPl8HKTDT7ptUzIXxCjqhDxlkZOsVbZPA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "246908376288-ga4d7dfghcil72d0a0b3kgc2rtik3u64.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:246908376288:android:452611c5d03716866dec85",
+        "android_client_info": {
+          "package_name": "com.pushtest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "246908376288-ga4d7dfghcil72d0a0b3kgc2rtik3u64.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPl8HKTDT7ptUzIXxCjqhDxlkZOsVbZPA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "246908376288-ga4d7dfghcil72d0a0b3kgc2rtik3u64.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:246908376288:android:adb96a2f567055096dec85",
+        "android_client_info": {
+          "package_name": "com.simodang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "246908376288-4e7m6jncvj71l65fc1nikptur487p41n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.simodang",
+            "certificate_hash": "b12b7f96e0e92a5ae994f6e9dedca5ac7c7a5052"
+          }
+        },
+        {
+          "client_id": "246908376288-nt53n2knqlulak67v1jrn1btcejsn2gc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.simodang",
+            "certificate_hash": "3cbca3aa174089bd42cbd19827b3af4e32cea40f"
+          }
+        },
+        {
+          "client_id": "246908376288-ga4d7dfghcil72d0a0b3kgc2rtik3u64.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPl8HKTDT7ptUzIXxCjqhDxlkZOsVbZPA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "246908376288-ga4d7dfghcil72d0a0b3kgc2rtik3u64.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,8 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:simodang_v2/presentation/android/add_pond/add_pond_controller.dart';
-import 'package:simodang_v2/presentation/android/add_pond/widgets/add_pond_form_widget.dart';
+import 'package:simodang_v2/presentation/android/shared/widgets/texts/title_button_widget.dart';
 
 class AddPondPage extends GetView<AddPondController> {
   @override
@@ -15,16 +16,101 @@ class AddPondPage extends GetView<AddPondController> {
       ),
       body: Container(
         margin: const EdgeInsets.all(20),
-        child: Obx(() => AddPondFormWidget(
-          setQR: controller.setQR,
-          qr: controller.qrResult.value,
-          isFilled: controller.isFilled.value,
-          setIsFilled: controller.setIsFilled,
-          imageUrl: controller.imageUrl.value,
-          setImageUrl: controller.setImageUrl,
-          noDevice: controller.noDevice.value,
-          setNoDevice: controller.setNoDevice,
-        ))
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              Obx(() => TextField(
+                controller: controller.pondNameController.value,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Nama Kolam"
+                ),
+              )),
+              const SizedBox(height: 20),
+              Obx(() => TextField(
+                controller: controller.pondAddressController.value,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Alamat Kolam"
+                ),
+              )),
+              const SizedBox(height: 20),
+              Obx(() => TextField(
+                controller: controller.pondCityController.value,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Kota Kolam"
+                ),
+              )),
+              const SizedBox(height: 20),
+              const Text("Status Kolam", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 5),
+              Wrap(
+                spacing: 10,
+                children: ['Terisi', 'Tidak terisi'].map((status) => Obx(() => ChoiceChip(
+                  label: Text(status),
+                  selected: controller.isFilled.value == (status == 'Terisi'),
+                  onSelected: (bool selected) {
+                    controller.setIsFilled(status == 'Terisi');
+                  },
+                ))).toList(),
+              ),
+              TitleButtonWidget(
+                title: "Perangkat",
+                buttonText: "Scan QR",
+                disabled: true,
+                onPressed: () {
+                  
+                },
+              ),
+              const SizedBox(height: 10),
+              Obx(() => Visibility(
+                visible: controller.noDevice.value == false,
+                child: DropdownButtonFormField(
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: "Perangkat"
+                  ),
+                  value: controller.deviceId.value,
+                  onChanged: (value) {
+                    controller.setDeviceId(value.toString());
+                  },
+                  items: controller.devices.map((e) => DropdownMenuItem(
+                    value: e.id,
+                    child: Text('${e.id} - ${e.name}'),
+                  )).toList(),
+                ),
+              )),
+              Obx(() => CheckboxListTile(
+                title: const Text("Tidak menggunakan perangkat"),
+                value: controller.noDevice.value,
+                controlAffinity: ListTileControlAffinity.leading,
+                contentPadding: EdgeInsets.zero,
+                onChanged: (bool? value) {
+                  controller.setNoDevice(value ?? false);
+                },
+              )),
+              TitleButtonWidget(
+                title: "Gambar Kolam",
+                buttonText: "Tambahkan",
+                disabled: true,
+                onPressed: () {
+                  
+                },
+              ),
+              const SizedBox(height: 10),
+              const Text("Belum ada gambar"),
+            ],
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          controller.createPond();
+        },
+        child: const Icon(Icons.save),
       ),
     );
   }
