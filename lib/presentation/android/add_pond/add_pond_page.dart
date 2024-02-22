@@ -95,13 +95,43 @@ class AddPondPage extends GetView<AddPondController> {
               TitleButtonWidget(
                 title: "Gambar Kolam",
                 buttonText: "Tambahkan",
-                disabled: true,
+                disabled: false,
                 onPressed: () {
-                  
+                  // give bottomsheet a background color
+                  Get.bottomSheet(
+                    Container(
+                      color: Colors.white,
+                      child: Wrap(
+                        children: [
+                          ListTile(
+                            contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                            leading: const Icon(Icons.camera_alt),
+                            title: const Text("Kamera"),
+                            onTap: () {
+                              controller.pickImageCamera();
+                              Get.back();
+                            },
+                          ),
+                          ListTile(
+                            contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                            leading: const Icon(Icons.image),
+                            title: const Text("Galeri"),
+                            onTap: () {
+                              controller.pickImageGallery();
+                              Get.back();
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
                 },
               ),
               const SizedBox(height: 10),
-              const Text("Belum ada gambar"),
+              Obx(() => controller.imagePreview.value != '' ?
+                Image.file(File(controller.imagePreview.value)) :
+                const Text("Belum ada gambar")
+              ),
             ],
           ),
         ),
