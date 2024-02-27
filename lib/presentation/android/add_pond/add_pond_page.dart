@@ -60,9 +60,9 @@ class AddPondPage extends GetView<AddPondController> {
               TitleButtonWidget(
                 title: "Perangkat",
                 buttonText: "Scan QR",
-                disabled: true,
+                disabled: false,
                 onPressed: () {
-                  
+                  controller.scanQr();
                 },
               ),
               const SizedBox(height: 10),
