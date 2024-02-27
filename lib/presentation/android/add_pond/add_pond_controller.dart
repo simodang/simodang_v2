@@ -72,6 +72,15 @@ class AddPondController extends GetxController {
     return url;
   }
 
+  Future<void> scanQr() async {
+    dynamic qrResult = await Get.toNamed('/qr');
+    if (qrResult == null) {
+      print("NOT FOUND");
+      return;
+    }
+    print(qrResult);
+  }
+
   Future<void> createPond() async {
     if (pondNameController.value.text == "") {
       return;

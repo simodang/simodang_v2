@@ -1,39 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:qr_mobile_vision/qr_camera.dart';
 import 'package:simodang_v2/presentation/android/qr_scan/qr_scan_controller.dart';
-import 'package:simodang_v2/presentation/android/shared/widgets/texts/title_button_widget.dart';
+
 
 class QrScanPage extends GetView<QrScanController> {
-  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-
-  void _onQRViewCreated(QRViewController controller) {
-    controller.scannedDataStream.listen((scanData) {
-      controller.pauseCamera();
-      Get.back(result: scanData.code);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    Get.put(QrScanController());
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Scan QR"),
+        title: Text('QR Scan'),
       ),
       body: Container(
-        margin: EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
         child: Column(
-          children: <Widget>[
-            Expanded(
-              flex: 5,
-              child: QRView(
-                key: qrKey,
-                onQRViewCreated: _onQRViewCreated,
+          children: [
+            Obx(() => Text(
+              controller.qrResult.value,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
-            ),
+            )),
+            const SizedBox(height: 20),
+            Expanded(
+              child: QrCamera(
+                onError: (context, error) => Text(
+                  error.toString(),
+                  style: const TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                qrCodeCallback: (code) {
+                  controller.setQr(code ?? 'QR Belum Didapatkan');
+                },
+              ),
+            )
           ],
         ),
       ),
+      floatingActionButton: Obx(() => Visibility(
+        visible: controller.isFound.value,
+        child: FloatingActionButton(
+          onPressed: () {
+            Get.back(result: controller.qrResult.value);
+          },
+          child: const Icon(Icons.check),
+        ),
+      )),
     );
   }
 }
