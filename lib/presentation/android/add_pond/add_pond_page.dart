@@ -58,14 +58,14 @@ class AddPondPage extends GetView<AddPondController> {
                   },
                 ))).toList(),
               ),
-              TitleButtonWidget(
+              Obx(() => TitleButtonWidget(
                 title: "Perangkat",
                 buttonText: "Scan QR",
-                disabled: false,
+                disabled: controller.noDevice.value == true || controller.isQrScanned.value == true,
                 onPressed: () {
                   controller.scanQr();
                 },
-              ),
+              )),
               Obx(() => controller.isQrScanned.value == true ? 
                 TextButtonWidget(
                   text: controller.deviceId.value ?? "",
@@ -86,9 +86,9 @@ class AddPondPage extends GetView<AddPondController> {
                     labelText: "Perangkat"
                   ),
                   value: controller.deviceId.value,
-                  onChanged: (value) {
-                    controller.setDeviceId(value.toString());
-                  },
+                  onChanged: controller.isQrScanned.value == false ? (String? value) {
+                    controller.setDeviceId(value);
+                  } : null,
                   items: controller.devices.map((e) => DropdownMenuItem(
                     value: e.id,
                     child: Text('${e.id} - ${e.name}'),
@@ -96,6 +96,7 @@ class AddPondPage extends GetView<AddPondController> {
                 ),
               )),
               Obx(() => CheckboxListTile(
+                enabled: controller.isQrScanned.value == false,
                 title: const Text("Tidak menggunakan perangkat"),
                 value: controller.noDevice.value,
                 controlAffinity: ListTileControlAffinity.leading,
