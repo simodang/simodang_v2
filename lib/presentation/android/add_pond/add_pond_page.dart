@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:simodang_v2/presentation/android/add_pond/add_pond_controller.dart';
 import 'package:simodang_v2/presentation/android/shared/widgets/texts/title_button_widget.dart';
+import 'package:simodang_v2/presentation/android/shared/widgets/texts/text_button_widget.dart';
 
 class AddPondPage extends GetView<AddPondController> {
   @override
@@ -64,6 +65,17 @@ class AddPondPage extends GetView<AddPondController> {
                 onPressed: () {
                   controller.scanQr();
                 },
+              ),
+              Obx(() => controller.isQrScanned.value == true ? 
+                TextButtonWidget(
+                  text: controller.deviceId.value ?? "",
+                  buttonLabel: "Batal QR",
+                  onPressed: () {
+                    controller.setIsQrScanned(false);
+                    controller.setDeviceId(null);
+                  },
+                ) :
+                const SizedBox.shrink(),
               ),
               const SizedBox(height: 10),
               Obx(() => Visibility(
