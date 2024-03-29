@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:path/path.dart' as path;
 import 'package:mime/mime.dart';
 
@@ -21,6 +22,7 @@ class AddPondController extends GetxController {
 
   var noDevice = false.obs;
   RxString imagePreview = ''.obs;
+  RxBool isQrScanned = false.obs;
 
   RxList<Device> devices = <Device>[].obs;
 
@@ -42,6 +44,10 @@ class AddPondController extends GetxController {
 
   void setImagePreview(String imagePreview) {
     this.imagePreview.value = imagePreview;
+  }
+
+  void setIsQrScanned(bool isQrScanned) {
+    this.isQrScanned.value = isQrScanned;
   }
 
   Future<void> pickImageCamera() async {
@@ -75,10 +81,22 @@ class AddPondController extends GetxController {
   Future<void> scanQr() async {
     dynamic qrResult = await Get.toNamed('/qr');
     if (qrResult == null) {
-      print("NOT FOUND");
       return;
     }
-    print(qrResult);
+
+    var filtered = devices.where((element) => element.id == qrResult);
+    if (filtered.isEmpty) {
+      Get.snackbar(
+        "Error",
+        "Perangkat tidak ditemukan",
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+      return;
+    }
+
+    setIsQrScanned(true);
+    setDeviceId(qrResult);
   }
 
   Future<void> createPond() async {
