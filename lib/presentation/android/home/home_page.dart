@@ -35,7 +35,7 @@ class HomePage extends GetView<HomeController> {
             )),
             const SizedBox(height: 15),
             Obx(() => StatWidget(
-              pondCount: controller.ponds.length,
+              pondCount: controller.pondState.ponds.length,
               seedCount: controller.seedCount.value,
               warningCount: controller.warningCount.value,
             )),
@@ -47,16 +47,18 @@ class HomePage extends GetView<HomeController> {
             ),
             SizedBox(
               height: 200,
-              child: Obx(() => ListView.builder(
+              child: Obx(() => controller.pondState.isLoading.value
+              ? const Center(child: CircularProgressIndicator())
+              : ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: controller.ponds.length,
+                itemCount: controller.pondState.getLastFive().length,
                 itemBuilder: (context, index) {
                   return Card(
                     child: PondItemWidget(
-                      title: controller.ponds[index].name,
-                      address: controller.ponds[index].city,
-                      imageUrl: controller.ponds[index].imageUrl,
-                      onTap: () => Get.toNamed('/detail?id=${controller.ponds[index].id}'),
+                      title: controller.pondState.ponds[index].name,
+                      address: controller.pondState.ponds[index].city,
+                      imageUrl: controller.pondState.ponds[index].imageUrl,
+                      onTap: () => Get.toNamed('/detail?id=${controller.pondState.ponds[index].id}'),
                     ),
                   );
                 }
