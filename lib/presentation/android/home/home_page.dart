@@ -69,16 +69,18 @@ class HomePage extends GetView<HomeController> {
               onPressed: () {},
             ),
             Flexible(
-              child: Obx(() => ListView.separated(
+              child: Obx(() => controller.articleState.isLoading.value
+              ? const Center(child: CircularProgressIndicator())
+              : ListView.separated(
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
-                itemCount: controller.articles.length,
+                itemCount: controller.articleState.articles.length,
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () => {},
                     child: ArticleListItemWidget(
-                      imageUrl: controller.articles[index].image,
-                      title: controller.articles[index].title,
+                      imageUrl: controller.articleState.articles[index].image,
+                      title: controller.articleState.articles[index].title,
                     )
                   );
                 },
