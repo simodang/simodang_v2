@@ -58,7 +58,13 @@ class HomePage extends GetView<HomeController> {
                       title: controller.pondState.ponds[index].name,
                       address: controller.pondState.ponds[index].city,
                       imageUrl: controller.pondState.ponds[index].imageUrl,
-                      onTap: () => Get.toNamed('/detail?id=${controller.pondState.ponds[index].id}'),
+                      onTap: () async {
+                        await Get.toNamed(
+                          '/detail?id=${controller.pondState.ponds[index].id}'
+                        )?.then((value) {
+                          controller.pondState.refreshPonds();
+                        });
+                      } 
                     ),
                   );
                 }
