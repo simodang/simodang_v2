@@ -43,7 +43,13 @@ class MonitorPage extends GetView<MonitorController> {
                     title: controller.pondState.ponds[index].name,
                     address: controller.pondState.ponds[index].city,
                     imageUrl: controller.pondState.ponds[index].imageUrl,
-                    onTap: () => Get.toNamed('/detail?id=${controller.pondState.ponds[index].id}'),
+                    onTap: () async {
+                      await Get.toNamed(
+                        '/detail?id=${controller.pondState.ponds[index].id}'
+                      )?.then((value) {
+                        controller.pondState.refreshPonds();
+                      });
+                    }
                   )
                 ),
               )),
@@ -52,7 +58,11 @@ class MonitorPage extends GetView<MonitorController> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.toNamed('/addpond'),
+        onPressed: () async {
+          await Get.toNamed('/addpond')?.then((value) {
+            controller.pondState.refreshPonds();
+          });
+        },
         child: const Icon(Icons.add),
       )
     );
