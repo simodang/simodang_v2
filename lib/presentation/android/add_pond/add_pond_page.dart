@@ -150,9 +150,10 @@ class AddPondPage extends GetView<AddPondController> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controller.createPond();
-          Get.back();
+        onPressed: () async {
+          await controller.createPond().then((value) {
+            Get.back();
+          });
         },
         child: const Icon(Icons.save),
       ),
