@@ -51,14 +51,20 @@ class AddPondController extends GetxController {
   }
 
   Future<void> pickImageCamera() async {
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.camera);
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.camera,
+      imageQuality: 10
+    );
     if (pickedFile != null) {
       setImagePreview(pickedFile.path);
     }
   }
 
   Future<void> pickImageGallery() async {
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 25
+    );
     if (pickedFile != null) {
       setImagePreview(pickedFile.path);
     }
