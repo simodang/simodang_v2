@@ -26,6 +26,8 @@ class AddPondController extends GetxController {
 
   RxList<Device> devices = <Device>[].obs;
 
+  RxBool isSubmitting = false.obs;
+
   void setIsFilled(bool isFilled) {
     this.isFilled.value = isFilled;
   }
@@ -130,6 +132,8 @@ class AddPondController extends GetxController {
       final url = await uploadImage();
       setImageUrl(url);
     }
+
+    isSubmitting.value = true;
 
     Pond pond = Pond(
       id: "",
