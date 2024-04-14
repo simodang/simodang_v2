@@ -22,6 +22,17 @@ class AddPondPage extends GetView<AddPondController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
+              Obx(() => controller.isSubmitting.value == true ? 
+                const Center(
+                  child: Column(
+                    children: [
+                      CircularProgressIndicator(),
+                      SizedBox(height: 10),
+                      Text("Menyimpan data kolam..."),
+                      SizedBox(height: 20)
+                    ],
+                  )
+                ) : const SizedBox.shrink()),
               Obx(() => TextField(
                 controller: controller.pondNameController.value,
                 decoration: const InputDecoration(
