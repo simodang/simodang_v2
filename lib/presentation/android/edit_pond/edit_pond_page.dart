@@ -5,7 +5,6 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:simodang_v2/presentation/android/edit_pond/edit_pond_controller.dart';
-import 'package:simodang_v2/presentation/android/edit_pond/widgets/bottom_container_widget.dart';
 import 'package:simodang_v2/presentation/android/edit_pond/widgets/device_container_widget.dart';
 import 'package:simodang_v2/presentation/android/shared/widgets/bottoms/imagepick_container_widget.dart';
 import 'package:simodang_v2/presentation/android/shared/widgets/texts/list_text_widget.dart';
@@ -47,42 +46,45 @@ class EditPondPage extends GetView<EditPondController> {
             title: const Text("Nama Kolam"),
             subtitle: Obx(() => Text(controller.pondName.value)),
             onTap: () => {
-              Get.bottomSheet(
-                BottomContainerWidget(
-                  text: "Nama Kolam",
-                  initialValue: controller.pondName.value,
-                  setFinal: controller.setFinalPondName,
-                  setTemp: controller.setPondName,
-                ),
-              )
+              Get.toNamed("/editfield", arguments: {
+                'field': "Nama Kolam",
+                'value': controller.pondName.value,
+                'isNumber': false,
+              })?.then((value) {
+                if (value != null) {
+                  controller.setPondName(value);
+                }
+              })
             },
           ),
           ListTile(
             title: const Text("Alamat"),
             subtitle: Obx(() => Text(controller.pondAddress.value)),
             onTap: () => {
-              Get.bottomSheet(
-                BottomContainerWidget(
-                  text: "Alamat",
-                  initialValue: controller.pondAddress.value,
-                  setFinal: controller.setFinalPondAddress,
-                  setTemp: controller.setPondAddress,
-                ),
-              )
+              Get.toNamed("/editfield", arguments: {
+                'field': "Alamat Kolam",
+                'value': controller.pondAddress.value,
+                'isNumber': false,
+              })?.then((value) {
+                if (value != null) {
+                  controller.setPondAddress(value);
+                }
+              })
             },
           ),
           ListTile(
             title: const Text("Kota"),
             subtitle: Obx(() => Text(controller.pondCity.value)),
             onTap: () => {
-              Get.bottomSheet(
-                BottomContainerWidget(
-                  text: "Kota",
-                  initialValue: controller.pondCity.value,
-                  setFinal: controller.setFinalPondCity,
-                  setTemp: controller.setPondCity,
-                ),
-              )
+              Get.toNamed("/editfield", arguments: {
+                'field': "Kota Kolam",
+                'value': controller.pondCity.value,
+                'isNumber': false,
+              })?.then((value) {
+                if (value != null) {
+                  controller.setPondCity(value);
+                }
+              })
             },
           ),
           ListTile(
@@ -101,15 +103,15 @@ class EditPondPage extends GetView<EditPondController> {
             title: const Text("Jumlah Benih"),
             subtitle: Obx(() => Text(controller.seedCount.value.toString())),
             onTap: () => {
-              Get.bottomSheet(
-                BottomContainerWidget(
-                  text: "Jumlah Benih",
-                  numberOnly: true,
-                  initialValue: controller.seedCount.value.toString(),
-                  setFinal: controller.setFinalSeedCount,
-                  setTemp: controller.setSeedCount,
-                ),
-              )
+              Get.toNamed("/editfield", arguments: {
+                'field': "Jumlah Benih",
+                'value': controller.seedCount.value,
+                'isNumber': true,
+              })?.then((value) {
+                if (value != null) {
+                  controller.setSeedCount(value);
+                }
+              })
             },
           ),
           ListTile(
