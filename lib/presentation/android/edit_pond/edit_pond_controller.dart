@@ -9,7 +9,7 @@ class EditPondController extends GetxController {
   var seedCount = "911".obs;
   var seedDate = "21 Desember 2012".obs;
   var isFilled = true.obs;
-  var deviceId = "SN-1234567890".obs;
+  var deviceId = "idfi".obs;
 
   var isImageChanged = false.obs;
   var isNoDevice = false.obs;

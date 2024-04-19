@@ -11,6 +11,8 @@ import 'package:simodang_v2/presentation/android/login/login_page.dart';
 import 'package:simodang_v2/presentation/android/main/main_page.dart';
 import 'package:simodang_v2/presentation/android/notification/notification_page.dart';
 import 'package:simodang_v2/presentation/android/qr_scan/qr_scan_page.dart';
+import 'package:simodang_v2/presentation/android/select_device/select_device_binding.dart';
+import 'package:simodang_v2/presentation/android/select_device/select_device_page.dart';
 part './routes.dart';
 
 class Pages {
@@ -23,6 +25,11 @@ class Pages {
     GetPage(name: Routes.addPond, page: () => AddPondPage()),
     GetPage(name: Routes.editPond, page: () => EditPondPage()),
     GetPage(name: Routes.editField, page: () => EditFieldPage()),
+    GetPage(
+      name: Routes.selectDevice,
+      page: () => SelectDevicePage(),
+      binding: SelectDeviceBinding(),
+    ),
     GetPage(name: Routes.editDevice, page: () => EditDevicePage()),
     GetPage(name: Routes.editThreshold, page: () => EditThresholdPage()),
     GetPage(name: Routes.qr, page: () => QrScanPage()),

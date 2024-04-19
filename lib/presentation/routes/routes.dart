@@ -9,6 +9,7 @@ abstract class Routes {
   static const addPond = '/addpond';
   static const editPond = '/editpond';
   static const editField = '/editfield';
+  static const selectDevice = '/selectdevice';
   static const editDevice = '/editdevice';
   static const editThreshold = '/editthreshold';
   static const qr = '/qr';
