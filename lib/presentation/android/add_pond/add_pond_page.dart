@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:simodang_v2/presentation/android/add_pond/add_pond_controller.dart';
+import 'package:simodang_v2/presentation/android/shared/widgets/row_label_widget.dart';
 import 'package:simodang_v2/presentation/android/shared/widgets/texts/title_button_widget.dart';
 import 'package:simodang_v2/presentation/android/shared/widgets/texts/text_button_widget.dart';
 
@@ -69,53 +70,34 @@ class AddPondPage extends GetView<AddPondController> {
                   },
                 ))).toList(),
               ),
-              Obx(() => TitleButtonWidget(
-                title: "Perangkat",
-                buttonText: "Scan QR",
-                disabled: controller.noDevice.value == true || controller.isQrScanned.value == true,
-                onPressed: () {
-                  controller.scanQr();
-                },
+              const SizedBox(height: 20),
+              Obx(() => RowLabelWidget(
+                label: "Kode Perangkat",
+                value: controller.deviceId.value ?? "Tidak Ada",
               )),
-              Obx(() => controller.isQrScanned.value == true ? 
-                TextButtonWidget(
-                  text: controller.deviceId.value ?? "",
-                  buttonLabel: "Batal QR",
-                  onPressed: () {
-                    controller.setIsQrScanned(false);
-                    controller.setDeviceId(null);
-                  },
-                ) :
-                const SizedBox.shrink(),
-              ),
               const SizedBox(height: 10),
-              Obx(() => Visibility(
-                visible: controller.noDevice.value == false,
-                child: DropdownButtonFormField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Perangkat"
-                  ),
-                  value: controller.deviceId.value,
-                  onChanged: controller.isQrScanned.value == false ? (String? value) {
+              FilledButton(
+                onPressed: () {
+                  Get.toNamed("/selectdevice", arguments: {
+                    'deviceId': controller.deviceId.value ?? "Tidak Ada",
+                  })?.then((value) {
+                    if (value == null) {
+                      return;
+                    }
+                    if (value == "Tidak Ada") {
+                      controller.setDeviceId(null);
+                      controller.setNoDevice(true);
+                      return;
+                    }
                     controller.setDeviceId(value);
-                  } : null,
-                  items: controller.devices.map((e) => DropdownMenuItem(
-                    value: e.id,
-                    child: Text('${e.id} - ${e.name}'),
-                  )).toList(),
-                ),
-              )),
-              Obx(() => CheckboxListTile(
-                enabled: controller.isQrScanned.value == false,
-                title: const Text("Tidak menggunakan perangkat"),
-                value: controller.noDevice.value,
-                controlAffinity: ListTileControlAffinity.leading,
-                contentPadding: EdgeInsets.zero,
-                onChanged: (bool? value) {
-                  controller.setNoDevice(value ?? false);
+                  });
                 },
-              )),
+                style: FilledButton.styleFrom(
+                  minimumSize: const Size.fromHeight(50)
+                ),
+                child: const Text("Pilih Perangkat"),
+              ),
+              const SizedBox(height: 20),
               TitleButtonWidget(
                 title: "Gambar Kolam",
                 buttonText: "Tambahkan",
