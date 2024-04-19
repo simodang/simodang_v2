@@ -143,15 +143,19 @@ class EditPondPage extends GetView<EditPondController> {
             title: const Text("Kode Perangkat"),
             subtitle: Obx(() => Text(controller.deviceId.value)),
             onTap: () => {
-              Get.bottomSheet(
-                Obx(() => DeviceContainerWidget(
-                  devices: devices,
-                  deviceId: controller.deviceId.value,
-                  setDeviceId: controller.setDeviceId,
-                  isNoDevice: controller.isNoDevice.value,
-                  setIsNoDevice: controller.setIsNoDevice,
-                ))
-              ),
+              Get.toNamed("/selectdevice", arguments: {
+                'deviceId': controller.deviceId.value,
+              })?.then((value) {
+                if (value == null) {
+                  return;
+                }
+                if (value == "Tidak Ada") {
+                  controller.setDeviceId("Tidak Ada");
+                  controller.setIsNoDevice(true);
+                  return;
+                }
+                controller.setDeviceId(value);
+              })
             },
           ),
         ],
