@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:simodang_v2/presentation/state/article_state.dart';
+import 'package:simodang_v2/presentation/state/device_state.dart';
 import 'package:simodang_v2/presentation/state/pond_state.dart';
 
 class HomeController extends GetxController {
